@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'org.springframework.boot' version '2.6.14'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.empik.githubservice'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    springCloudVersion = '2021.0.7'
+    h2_version = '2.1.214'
+    spock_version = '2.3-groovy-3.0'
+    hibernate_version = '1.0.2.Final'
+    springdoc_version = '1.7.0'
+    slf4f_version = '1.7.36'
+    junit_version = '5.4.0'
+}
+
+dependencies {
+    implementation(
+        'org.springframework.boot:spring-boot-starter-actuator',
+        'org.springframework.boot:spring-boot-starter-data-jpa',
+        'org.springframework.boot:spring-boot-starter-web',
+        'org.springframework.cloud:spring-cloud-starter-openfeign',
+        'org.springframework.cloud:spring-cloud-starter-bootstrap',
+        'org.springframework.cloud:spring-cloud-starter-loadbalancer',
+        "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:${hibernate_version}",
+        "com.h2database:h2:${h2_version}",
+        "org.slf4j:slf4j-api:${slf4f_version}",
+        "org.springdoc:springdoc-openapi-ui:${springdoc_version}"
+    )
+    testImplementation(
+        'org.springframework.boot:spring-boot-starter-test',
+        'org.springframework.cloud:spring-cloud-starter-contract-stub-runner',
+        'org.springframework.restdocs:spring-restdocs-mockmvc',
+        "org.spockframework:spock-spring:${spock_version}",
+        "org.junit.jupiter:junit-jupiter:${junit_version}"
+    )
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}

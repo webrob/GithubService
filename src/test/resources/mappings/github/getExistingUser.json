@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/users/octocat"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "id": 583231,
+      "login": "octocat",
+      "name": "The Octocat",
+      "type": "User",
+      "avatar_url": "https://avatars.githubusercontent.com/u/583231?v=4",
+      "created_at": "2011-01-25T18:44:36Z",
+      "followers": 9146,
+      "public_repos": 8
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
